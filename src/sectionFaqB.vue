@@ -107,7 +107,7 @@ export default {
             "ratio": 66.66666,
             "hidden": false,
             "content": {
-                "data": { "tag": "div", "font": "", "size": "text-small", "text": { "fr_FR": "Titre" }, "align": "center", "color": "#192234", "classes": [], "children": [] }, "type": "ww-text"
+                "data": { "tag": "div", "font": "", "size": "text-small", "text": { "fr": "Titre" }, "align": "center", "color": "#192234", "classes": [], "children": [] }, "type": "ww-text"
             },
             "children": {},
             "paddings": {},
@@ -121,7 +121,7 @@ export default {
                 "wwVersion": 2
             },{
                 "data": { "children": {} }, "link": { "data": {}, "type": "none" }, "tags": [],
-                "ratio": 66.66666, "hidden": false, "content": { "data": { "tag": "div", "font": "", "size": "", "text": { "en_GB": "New text", "fr_FR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat" }, "align": "left", "color": "#192234", "classes": [], "children": [] }, "type": "ww-text" }, "children": {}, "paddings": {}, 
+                "ratio": 66.66666, "hidden": false, "content": { "data": { "tag": "div", "font": "", "size": "", "text": { "en": "New text", "fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat" }, "align": "left", "color": "#192234", "classes": [], "children": [] }, "type": "ww-text" }, "children": {}, "paddings": {}, 
                 // "uniqueId": wwUtils.getUniqueId(), 
                 "wwVersion": 2
             }
@@ -141,7 +141,7 @@ export default {
                 "link": { "data": {}, "type": "none" },
                 "ratio": 66.66666,
                 "hidden": false,
-                "content": { "data": { "tag": "div", "font": "", "size": "", "text": { "en_GB": "New text", "fr_FR": "Nouveau texte" }, "align": "center", "color": "", "classes": [], "children": [] }, "type": "ww-text" },
+                "content": { "data": { "tag": "div", "font": "", "size": "", "text": { "en": "New text", "fr": "Nouveau texte" }, "align": "center", "color": "", "classes": [], "children": [] }, "type": "ww-text" },
                 "children": {},
                 // "uniqueId": wwUtils.getUniqueId(),
                 "wwVersion": 2
