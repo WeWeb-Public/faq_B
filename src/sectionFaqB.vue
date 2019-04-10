@@ -1,7 +1,5 @@
 <template>
-<div>
-    <!-- {{section}} -->
-    <div class="faq_B section-side-padding container-fluid">
+    <div class="faq_B section-side-padding">
         <wwObject ww-category="background" :ww-object="section.data.background"></wwObject>
 
         <!--TOP WWOBJS-->
@@ -12,38 +10,36 @@
             </div>
             <!-- <div class="add-ww-obj-container">
                 <div v-if="editingSection" class="add-ww-obj" @click="addWwObjToArray(data.topWwObjs)"><i class="fa fa-plus" aria-hidden="true"></i></div>
-            </div> -->
+            </div>-->
         </div>
 
         <div class="accordion">
             <div v-for="(block, idx) in section.data.blocks" :key="block.uniqueId" class="accordion-item marginb10">
                 <!-- <div v-if="editingSection" @click="removeWwObjFromArray(data.blocks, block)" class="remove-container">
                     <i class="fa fa-times" aria-hidden="true"></i>
-                </div> -->
+                </div>-->
                 <div v-on:click="addclick(idx)">
                     <wwObject :class="[`acc-title a-${idx}`, { active: idxActive === idx }]" :ww-object="block.faqTitle"/>
                 </div>
 
                 <!-- <transition name="slide" mode="out-in"> -->
-                    <div :class="[`content content-${idx}`, { active: idxActive === idx }]" v-show="idxActive === idx">
-                        <div class="block-ww-obj" v-for="contentWwObj in block.contentWwObjs" :key="contentWwObj.uniqueId">
-                            <wwObject :ww-object="contentWwObj"/>
-                            <!-- <div v-if="editingSection" class="remove-ww-obj" @click="removeWwObjFromArray(block.contentWwObjs, contentWwObj)"><i class="fa fa-times" aria-hidden="true"></i></div> -->
-                        </div>
-                        <div class="add-ww-obj-container">
-                            <!-- <div v-if="editingSection" class="add-ww-obj" @click="addWwObjToArray(block.contentWwObjs)"><i class="fa fa-plus" aria-hidden="true"></i></div> -->
-                        </div>
+                <div :class="[`content content-${idx}`, { active: idxActive === idx }]" v-show="idxActive === idx">
+                    <div class="block-ww-obj" v-for="contentWwObj in block.contentWwObjs" :key="contentWwObj.uniqueId">
+                        <wwObject :ww-object="contentWwObj"/>
+                        <!-- <div v-if="editingSection" class="remove-ww-obj" @click="removeWwObjFromArray(block.contentWwObjs, contentWwObj)"><i class="fa fa-times" aria-hidden="true"></i></div> -->
                     </div>
+                    <div class="add-ww-obj-container">
+                        <!-- <div v-if="editingSection" class="add-ww-obj" @click="addWwObjToArray(block.contentWwObjs)"><i class="fa fa-plus" aria-hidden="true"></i></div> -->
+                    </div>
+                </div>
                 <!-- </transition> -->
-
             </div>
             <!-- <div v-if="editingSection" class="feature-container text-center marginb20"> -->
-                <!-- <div class="ww-add-block-container" @click="addWwObjToArray(data.blocks, 'newBlock')"> -->
-                    <!-- Ajouter bloc -->
-                <!-- </div> -->
+            <!-- <div class="ww-add-block-container" @click="addWwObjToArray(data.blocks, 'newBlock')"> -->
+            <!-- Ajouter bloc -->
+            <!-- </div> -->
             <!-- </div> -->
         </div>
-
 
         <!--BOTTOM WWOBJS-->
         <div class="bottom-ww-objs">
@@ -53,26 +49,24 @@
             </div>
             <!-- <div class="add-ww-obj-container">
                 <div v-if="editingSection" class="add-ww-obj" @click="addWwObjToArray(data.bottomWwObjs)"><i class="fa fa-plus" aria-hidden="true"></i></div>
-            </div> -->
+            </div>-->
         </div>
-
     </div>
-</div>
 </template>
 
 <script>
 export default {
-	name: "faq_B",
-	props: {
-		section: Object
+    name: "faq_B",
+    props: {
+        section: Object
     },
     data() {
         return {
             idxActive: -1
         }
     },
-	methods: {
-		init () {
+    methods: {
+        init() {
             this.section.data.topWwObjs = this.section.data.topWwObjs || []
             this.section.data.bottomWwObjs = this.section.data.bottomWwObjs || []
             this.section.data.blocks = this.section.data.blocks || [];
@@ -80,62 +74,62 @@ export default {
                 this.section.data.blocks.push(this.getNewBlock());
             }
         },
-        removeWwObjFromArray (wwObjArray, wwObj) {
+        removeWwObjFromArray(wwObjArray, wwObj) {
             if (wwObjArray.length === 1) { return; }
             const index = wwObjArray.indexOf(wwObj);
             if (index !== -1) {
                 wwObjArray.splice(index, 1);
             }
         },
-        addWwObjToArray (wwObjArray, option) {
+        addWwObjToArray(wwObjArray, option) {
             console.log('tralala : ', wwObjArray, option)
             var objToPush = this.getNewWwObj()
             if (option === 'empty') { objToPush = {} }
             if (option === 'newBlock') { objToPush = this.getNewBlock() }
             wwObjArray.push(objToPush)
         },
-        getNewBlock () {
-        return {
-            "faqTitle": {
-            "data": {
-                "children": {}
-            },
-            "link": {
-                "data": {}, "type": "none"
-            },
-            "tags": [],
-            "ratio": 66.66666,
-            "hidden": false,
-            "content": {
-                "data": { "tag": "div", "font": "", "size": "text-small", "text": { "fr": "Titre" }, "align": "center", "color": "#192234", "classes": [], "children": [] }, "type": "ww-text"
-            },
-            "children": {},
-            "paddings": {},
-            // "uniqueId": wwUtils.getUniqueId(),
-            "wwVersion": 2
-            },
-            // "uniqueId": wwUtils.getUniqueId(),
-            "contentWwObjs": [{
-                "data": {}, "link": { "data": {}, "type": "none" }, "tags": [], "ratio": 66.66666, "hidden": false, "content": { "data": { "size": "big" }, "type": "ww-margin" }, "children": {}, "paddings": {}, 
-                // "uniqueId": wwUtils.getUniqueId(), 
-                "wwVersion": 2
-            },{
-                "data": { "children": {} }, "link": { "data": {}, "type": "none" }, "tags": [],
-                "ratio": 66.66666, "hidden": false, "content": { "data": { "tag": "div", "font": "", "size": "", "text": { "en": "New text", "fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat" }, "align": "left", "color": "#192234", "classes": [], "children": [] }, "type": "ww-text" }, "children": {}, "paddings": {}, 
-                // "uniqueId": wwUtils.getUniqueId(), 
-                "wwVersion": 2
+        getNewBlock() {
+            return {
+                "faqTitle": {
+                    "data": {
+                        "children": {}
+                    },
+                    "link": {
+                        "data": {}, "type": "none"
+                    },
+                    "tags": [],
+                    "ratio": 66.66666,
+                    "hidden": false,
+                    "content": {
+                        "data": { "tag": "div", "font": "", "size": "text-small", "text": { "fr": "Titre" }, "align": "center", "color": "#192234", "classes": [], "children": [] }, "type": "ww-text"
+                    },
+                    "children": {},
+                    "paddings": {},
+                    // "uniqueId": wwUtils.getUniqueId(),
+                    "wwVersion": 2
+                },
+                // "uniqueId": wwUtils.getUniqueId(),
+                "contentWwObjs": [{
+                    "data": {}, "link": { "data": {}, "type": "none" }, "tags": [], "ratio": 66.66666, "hidden": false, "content": { "data": { "size": "big" }, "type": "ww-margin" }, "children": {}, "paddings": {},
+                    // "uniqueId": wwUtils.getUniqueId(), 
+                    "wwVersion": 2
+                }, {
+                    "data": { "children": {} }, "link": { "data": {}, "type": "none" }, "tags": [],
+                    "ratio": 66.66666, "hidden": false, "content": { "data": { "tag": "div", "font": "", "size": "", "text": { "en": "New text", "fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat" }, "align": "left", "color": "#192234", "classes": [], "children": [] }, "type": "ww-text" }, "children": {}, "paddings": {},
+                    // "uniqueId": wwUtils.getUniqueId(), 
+                    "wwVersion": 2
+                }
+                ],
+                // "uniqueId": wwUtils.getUniqueId()
             }
-            ],
-            // "uniqueId": wwUtils.getUniqueId()
-        }
         },
-        removeThumbnail (thumbnail) {
+        removeThumbnail(thumbnail) {
             const index = this.section.data.thumbnails.indexOf(thumbnail);
             if (index !== -1) {
                 this.section.data.thumbnails.splice(index, 1);
             }
         },
-        getNewWwObj (option) {
+        getNewWwObj(option) {
             return {
                 "data": {},
                 "link": { "data": {}, "type": "none" },
@@ -147,22 +141,23 @@ export default {
                 "wwVersion": 2
             }
         },
-        addclick (index) {
+        addclick(index) {
             this.idxActive = (this.idxActive === index) ? -1 : index;
             // contentElement.slideToggle(400);
         }
     },
     mounted: function () {
         this.init()
-	}
+    }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.faq_B .container {
+.faq_B {
     width: 100%;
     position: relative;
+    min-height: 60px;
 }
 
 .faq_B .section-padding {
@@ -182,7 +177,7 @@ export default {
     height: 30px;
     width: 30px;
     background-color: white;
-    color: #92979C;
+    color: #92979c;
     box-shadow: 0px 1px 1px 0px #656565;
     -moz-box-shadow: 0px 1px 1px 0px #656565;
     -webkit-box-shadow: 0px 1px 1px 0px #656565;
@@ -233,7 +228,7 @@ export default {
     display: flex;
     flex-direction: column;
     margin: 0 10%;
-    padding: 0 15px
+    padding: 0 15px;
 }
 
 .faq_B .accordion .acc-title {
@@ -254,8 +249,8 @@ export default {
 }
 
 .faq_B .accordion .acc-title::after {
-    font-family: 'FontAwesome', sans-serif;
-    content: '\f067';
+    font-family: "FontAwesome", sans-serif;
+    content: "\f067";
     position: absolute;
     float: right;
     right: -40px;
@@ -271,8 +266,8 @@ export default {
 }
 
 .faq_B .accordion .acc-title.active::after {
-    font-family: 'FontAwesome', sans-serif;
-    content: '\f068';
+    font-family: "FontAwesome", sans-serif;
+    content: "\f068";
     color: #7288a2;
     border: 1px solid #7288a2;
     padding-top: 7px;
@@ -347,31 +342,31 @@ export default {
 @media (min-width: 768px) {
     .faq_B .accordion {
         margin: 0 10%;
-        padding: 0 15px
+        padding: 0 15px;
     }
 }
 
 @media (min-width: 992px) {
     .faq_B .accordion {
         margin: 0 20%;
-        padding: 0 15px
+        padding: 0 15px;
     }
 }
 
 @media (min-width: 1200px) {
     .faq_B .accordion {
         margin: 0 26%;
-        padding: 0 15px
+        padding: 0 15px;
     }
 }
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: opacity 1s;
+    transition: opacity 1s;
 }
 
 .slide-enter,
 .slide-leave-to {
-  opacity: 0;
+    opacity: 0;
 }
 </style>
